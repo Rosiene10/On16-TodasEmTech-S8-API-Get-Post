@@ -18,3 +18,10 @@ app.get("/",(request,response)=>{
 app.get("/ghiblifilms",(resquest,response)=>{
     response.status(200).send(ghiblifilmsJson)
 })
+
+app.get("/ghiblifilms/buscar/:id",(request,response)=>{
+    let idResquest=request.params.id
+    let filmeEncontrado=ghiblifilmsJson.find(ghiblifilms=>ghiblifilms.id==idResquest)
+
+    response.status(200).send(filmeEncontrado)
+})
