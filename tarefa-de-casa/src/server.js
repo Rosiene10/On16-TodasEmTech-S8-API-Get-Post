@@ -25,3 +25,27 @@ app.get("/ghiblifilms/buscar/:id",(request,response)=>{
 
     response.status(200).send(filmeEncontrado)
 })
+
+
+app.post("/ghiblifilms/criar", (request, response) => {
+
+    let nomeRequest = request.body.name
+    let tipoRequest = request.body.type
+    let estatisticasRequest = request.body.stats
+  
+    let novoghiblifilms = {
+      id: (ghiblifilmsJson.length) + 1,
+      name: nomeRequest,
+      type: tipoRequest,
+      stats: estatisticasRequest
+    }
+  
+    ghiblifilmsJson.push(novoghiblifilms)
+  
+    response.status(201).json(
+      [{
+        "mensagem": "Seu ghiblifilms foi cadastrado",
+        novoghiblifilms
+      }]
+    )
+  })
